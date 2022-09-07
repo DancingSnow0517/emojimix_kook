@@ -255,7 +255,8 @@ async def mix_emoji(emoji_1: str, emoji_2: str) -> Optional[bytes]:
 
 
 async def emoji(msg: Message):
-    match = re.match(r'^([\u200d-\U0001fab5]+)\+([\u200d-\U0001fab5]+)$', msg.content)
+    match = re.match(r'^([\u200d-\U0001fab5]+)\+([\u200d-\U0001fab5]+)$', msg.content.replace(' ', ''))
+    print(match)
     if match:
         emoji_1, emoji_2 = match.group(1), match.group(2)
         for i in ((emoji_1, emoji_2), (emoji_2, emoji_1)):
